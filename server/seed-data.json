@@ -1,0 +1,177 @@
+{
+  "articles": [
+    {
+      "id": "art-ciclo-agua",
+      "title": "El ciclo del agua y su vital importancia para la vida",
+      "summary": "Una travesía pedagógica para comprender el viaje inagotable del recurso más preciado de nuestra isla y el planeta.",
+      "subject": "Ciencias Naturales",
+      "grade": "5to Primaria",
+      "readTime": 8,
+      "status": "published",
+      "coverImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+      "coverAlt": "Esquema y paisaje del ciclo hidrológico en la naturaleza",
+      "author": "Lic. Ramona Almonte",
+      "role": "Especialista en Didáctica",
+      "views": 2450,
+      "createdAt": 1741941000000,
+      "content": "\n            <div style=\"background:linear-gradient(135deg,#e0f2fe,#f0fdf4);padding:20px 24px;border-radius:12px;margin-bottom:24px;border-left:4px solid #0284c7;\">\n              <p style=\"margin:0 0 8px;font-weight:700;color:#0369a1;\">📋 Ficha Curricular — Alineada al Currículo MINERD</p>\n              <p style=\"margin:4px 0;\"><strong>Competencia fundamental:</strong> Científica y Tecnológica</p>\n              <p style=\"margin:4px 0;\"><strong>Eje temático:</strong> La Tierra y el Universo — Ciclos naturales</p>\n              <p style=\"margin:4px 0;\"><strong>Indicador de logro:</strong> Describe las fases del ciclo del agua y explica su importancia para los ecosistemas locales.</p>\n              <p style=\"margin:4px 0;\"><strong>Grado:</strong> 5to Primaria &nbsp;|&nbsp; <strong>Duración:</strong> 3 sesiones de 45 min</p>\n            </div>\n\n            <h2>1. ¿De dónde viene la lluvia que riega nuestros campos?</h2>\n            <p>Cada vez que observamos un aguacero vespertino sobre Santo Domingo, el verde valle del Cibao o las aguas cristalinas del río Yaque del Norte, estamos presenciando una obra maestra de la naturaleza que lleva miles de millones de años en marcha: <strong>el ciclo del agua</strong>.</p>\n            <p>Para los estudiantes de primaria en nuestra región insular, comprender este ciclo no es solo una lección de ciencias; es entender la columna vertebral de nuestra agricultura, nuestro clima templado por los alisios y el agua potable que llega a nuestros hogares y aulas escolares.</p>\n\n            <blockquote style=\"border-left:4px solid #0284c7;padding:16px 20px;background:#f0f9ff;border-radius:0 8px 8px 0;margin:24px 0;\">\n              <p style=\"font-style:italic;margin:0 0 8px;\">«El agua que bebió un dinosaurio hace millones de años es exactamente la misma molécula que hoy acaricia las hojas de nuestros manglares dominicanos.»</p>\n              <cite style=\"color:#64748b;\">— Principio de Conservación Hidrológica</cite>\n            </blockquote>\n\n            <h2>2. Las 4 fases clave del ciclo continuo</h2>\n            <p>El agua se transforma de líquido a gas y de gas a sólido en una danza ininterrumpida:</p>\n            <ol>\n              <li><strong>Evaporación:</strong> El calor del sol calienta el agua superficial de los ríos, lagos y el inmenso mar Caribe, transformándola en vapor invisible que asciende a la atmósfera. En República Dominicana, con más de 1,600 km de costa, la evaporación es intensa todo el año.</li>\n              <li><strong>Condensación:</strong> Al enfriarse en las capas altas, el vapor de agua se agrupa en diminutas gotas formando las nubes y la neblina matutina que cubre nuestras cordilleras Central y Septentrional.</li>\n              <li><strong>Precipitación:</strong> Cuando las nubes se saturan, las gotas caen por gravedad en forma de lluvia, llovizna o, en el Pico Duarte, ocasionalmente granizo. Nuestro país recibe un promedio de 1,500 mm de lluvia al año.</li>\n              <li><strong>Recolección (Escorrentía e Infiltración):</strong> El agua alimenta los acuíferos subterráneos, fluye por las cuencas de los 20 ríos principales y desemboca de vuelta en el océano, reiniciando el ciclo.</li>\n            </ol>\n\n            <div style=\"background:#ecfdf5;padding:16px 20px;border-radius:10px;margin:24px 0;border:1px solid #a7f3d0;\">\n              <h4 style=\"margin:0 0 8px;color:#065f46;\">🌿 ¿Sabías que...?</h4>\n              <p style=\"margin:0;\">La Cordillera Central de la República Dominicana es conocida como la <em>«Madre de las Aguas»</em>. Allí nacen los ríos Yaque del Norte, Yaque del Sur, Artibonito y Yuna, que abastecen a más del 70% de la población dominicana.</p>\n            </div>\n\n            <h2>3. Secuencia Didáctica: El Experimento de la Bolsa Viajera</h2>\n            <p>Esta actividad permite a los estudiantes <strong>observar las 4 fases del ciclo en tiempo real</strong> usando materiales de bajo costo disponibles en cualquier escuela dominicana.</p>\n\n            <div style=\"background:#fff;padding:20px;border-radius:10px;border:1px solid #e2e8f0;margin:16px 0;\">\n              <h4 style=\"color:#1e40af;margin-top:0;\">🧪 Materiales (por equipo de 4 estudiantes)</h4>\n              <ul>\n                <li>1 bolsa plástica tipo ziploc transparente</li>\n                <li>1 taza de agua</li>\n                <li>Colorante azul alimentario (2 gotas)</li>\n                <li>Cinta adhesiva fuerte</li>\n                <li>1 marcador permanente</li>\n              </ul>\n\n              <h4 style=\"color:#1e40af;\">📝 Procedimiento (Sesión 1 — 45 min)</h4>\n              <ol>\n                <li>Verter el agua con colorante en la bolsa y sellarla herméticamente.</li>\n                <li>Con el marcador, dibujar un sol arriba, nubes en el medio y el mar abajo.</li>\n                <li>Pegar la bolsa en una ventana que reciba sol directo (orientación sur ideal).</li>\n                <li>Registrar en el cuaderno: hora, temperatura del aula, estado de la bolsa.</li>\n                <li><strong>Predicción:</strong> Cada equipo escribe qué cree que pasará en 2 horas.</li>\n              </ol>\n\n              <h4 style=\"color:#1e40af;\">🔍 Observación (Sesión 2 — día siguiente, 45 min)</h4>\n              <ol>\n                <li>Observar las gotas formadas en la parte superior de la bolsa (condensación).</li>\n                <li>Dibujar en el cuaderno lo que ven y etiquetar cada fase.</li>\n                <li>Comparar con la predicción: ¿acertaron? ¿Qué los sorprendió?</li>\n                <li>Discusión guiada: ¿Qué pasaría si tapamos el sol? ¿Y si la bolsa estuviera abierta?</li>\n              </ol>\n            </div>\n\n            <h2>4. Actividad para la Familia</h2>\n            <div style=\"background:#fef3c7;padding:16px 20px;border-radius:10px;margin:16px 0;border:1px solid #fcd34d;\">\n              <p style=\"margin:0 0 12px;font-weight:700;color:#92400e;\">🏠 Misión en Casa (con un adulto acompañante)</p>\n              <ol style=\"margin:0;\">\n                <li>Recorrer la casa identificando dónde se <em>usa</em> agua y dónde se <em>desperdicia</em>.</li>\n                <li>Llenar una tabla con 3 columnas: lugar, uso, cantidad estimada.</li>\n                <li>Proponer 3 acciones concretas para ahorrar agua en su hogar.</li>\n                <li>Opcional: Tomar una foto del grifo que más gotea y traerla al aula.</li>\n              </ol>\n            </div>\n\n            <h2>5. Síntesis y Compromiso Ciudadano</h2>\n            <p>El ciclo hidrológico no es estático; se ve directamente impactado por la deforestación de nuestras lomas, la contaminación por plásticos en cañadas y ríos, y el calentamiento global. Cada árbol que sembramos en nuestras escuelas es un regulador del ciclo; cada botella plástica que recogemos de un arroyo es una barrera menos para el flujo natural del agua.</p>\n\n            <div style=\"background:linear-gradient(135deg,#ede9fe,#e0f2fe);padding:20px;border-radius:10px;margin:24px 0;\">\n              <h4 style=\"margin:0 0 12px;color:#5b21b6;\">📊 Rúbrica de Evaluación Formativa</h4>\n              <table style=\"width:100%;border-collapse:collapse;font-size:14px;\">\n                <thead>\n                  <tr style=\"background:#8b5cf6;color:#fff;\">\n                    <th style=\"padding:8px;text-align:left;border-radius:6px 0 0 0;\">Criterio</th>\n                    <th style=\"padding:8px;text-align:center;\">Avanzado (4)</th>\n                    <th style=\"padding:8px;text-align:center;\">Satisfactorio (3)</th>\n                    <th style=\"padding:8px;text-align:center;border-radius:0 6px 0 0;\">En proceso (2)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr style=\"background:#f5f3ff;\">\n                    <td style=\"padding:8px;font-weight:600;\">Identifica las 4 fases</td>\n                    <td style=\"padding:8px;text-align:center;\">Nombra y explica las 4 con ejemplos locales</td>\n                    <td style=\"padding:8px;text-align:center;\">Nombra las 4 fases correctamente</td>\n                    <td style=\"padding:8px;text-align:center;\">Identifica 2-3 fases</td>\n                  </tr>\n                  <tr>\n                    <td style=\"padding:8px;font-weight:600;\">Experimento</td>\n                    <td style=\"padding:8px;text-align:center;\">Registra y explica relación causa-efecto</td>\n                    <td style=\"padding:8px;text-align:center;\">Realiza el experimento y registra</td>\n                    <td style=\"padding:8px;text-align:center;\">Realiza el experimento con ayuda</td>\n                  </tr>\n                  <tr style=\"background:#f5f3ff;\">\n                    <td style=\"padding:8px;font-weight:600;\">Compromiso ambiental</td>\n                    <td style=\"padding:8px;text-align:center;\">Propone y ejecuta acciones en su entorno</td>\n                    <td style=\"padding:8px;text-align:center;\">Propone acciones concretas</td>\n                    <td style=\"padding:8px;text-align:center;\">Reconoce la importancia del cuidado</td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div style=\"background:#f0f9ff;padding:16px 20px;border-radius:10px;margin:16px 0;border:1px solid #bae6fd;\">\n              <p style=\"margin:0;font-weight:600;color:#0369a1;\">📖 Referencias Curriculares</p>\n              <ul style=\"margin:8px 0 0;color:#334155;\">\n                <li>Diseño Curricular Nivel Primario, MINERD (2014), Área Ciencias de la Naturaleza.</li>\n                <li>Ordenanza 02-2015, sobre el currículo revisado del Nivel Primario.</li>\n                <li>UNESCO (2023). Educación para el Desarrollo Sostenible — ODS 6: Agua limpia.</li>\n              </ul>\n            </div>\n          ",
+      "tags": [
+        "Biodiversidad",
+        "MINERD",
+        "EducaciónAmbiental",
+        "Agua"
+      ]
+    },
+    {
+      "id": "art-fracciones-equiv",
+      "title": "Comprendiendo las fracciones equivalentes: método visual para el aula y el hogar",
+      "summary": "Estrategias gráficas paso a paso para desmitificar las fracciones y construir intuición matemática sólida.",
+      "subject": "Matemáticas",
+      "grade": "6to Primaria",
+      "readTime": 7,
+      "status": "published",
+      "coverImage": "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=1200&q=80",
+      "coverAlt": "Regletas y círculos fraccionarios manipulativos",
+      "author": "Lic. Marcos Peña",
+      "role": "Docente de Matemáticas",
+      "views": 1890,
+      "createdAt": 1741688100000,
+      "content": "\n            <h2>¿Por qué 1/2 es igual a 2/4 y a 4/8?</h2>\n            <p>El concepto de equivalencia en fracciones suele ser una de las principales barreras pedagógicas cuando se aborda de forma puramente abstracta. Utilizando el método Singapur (Concreto-Pictórico-Abstracto), los niños pueden ver y tocar las divisiones antes de operar con números.</p>\n            <p>Presentar un pastel circular dividido en 2 mitades frente a otro dividido en 4 cuartos permite comprender de inmediato que la cantidad de superficie ocupada es idéntica.</p>\n          ",
+      "tags": [
+        "Matemáticas",
+        "MétodoCPA",
+        "GeometríaLúdica"
+      ]
+    },
+    {
+      "id": "art-oraciones-claras",
+      "title": "Cómo construir oraciones claras y coherentes en la escuela primaria",
+      "summary": "Guía de sintaxis lúdica para niños: identificación del sujeto y predicado mediante fichas manipulables.",
+      "subject": "Lengua Española",
+      "grade": "4to Primaria",
+      "readTime": 4,
+      "status": "published",
+      "coverImage": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80",
+      "coverAlt": "Cuaderno escolar con ejercicios caligráficos y gramaticales",
+      "author": "Mtra. Altagracia Díaz",
+      "role": "Docente de Letras",
+      "views": 940,
+      "createdAt": 1741435200000,
+      "content": "\n            <h2>El juego de los bloques sintácticos</h2>\n            <p>Aprender la concordancia entre género y número es mucho más sencillo cuando los alumnos construyen oraciones como si fuesen trenes con vagones: ¿Quién realiza la acción? ¿Qué acción realiza? ¿Dónde o cómo ocurre?</p>\n          ",
+      "tags": [
+        "LenguaEspañola",
+        "RedacciónInicial",
+        "Gramática"
+      ]
+    },
+    {
+      "id": "art-manglares-borrador",
+      "title": "Ecosistemas Costeros y Manglares de Samaná",
+      "summary": "Una secuencia reflexiva y multidisciplinar diseñada para conectar a los alumnos de primaria con el patrimonio marino.",
+      "subject": "Ciencias Naturales",
+      "grade": "5to Primaria",
+      "readTime": 6,
+      "status": "draft",
+      "coverImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "coverAlt": "Paisaje de manglar rojo costero",
+      "author": "Lic. Ramona Almonte",
+      "role": "Especialista en Didáctica",
+      "views": 0,
+      "createdAt": 1742029200000,
+      "content": "\n            <h2>Guardianes del litoral dominicano</h2>\n            <p>Borrador en construcción. Pendiente de anexar la rúbrica formativa y las preguntas de observación de campo.</p>\n          ",
+      "tags": [
+        "Biodiversidad",
+        "Samaná",
+        "EducaciónAmbiental"
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": "comm-1",
+      "articleId": "art-ciclo-agua",
+      "authorName": "Prof. Manuel Grullón",
+      "authorType": "teacher",
+      "authorBadge": "Docente Verificado",
+      "schoolInfo": "Escuela Rep. de Chile • Distrito 10-01",
+      "content": "Excelente desglose. Realizamos hoy mismo el experimento de la bolsa con mis 28 alumnos de 5to grado y la emoción fue fantástica. ¿Tiene recomendaciones para adaptarlo con menos luz solar?",
+      "status": "pending",
+      "createdAt": 1794844017601,
+      "teacherReply": null
+    },
+    {
+      "id": "comm-2",
+      "articleId": "art-ciclo-agua",
+      "authorName": "Estefanía Peña",
+      "authorType": "family",
+      "authorBadge": "Familia Comunidad",
+      "schoolInfo": "Madre de estudiante de 5to A",
+      "content": "Leí este recurso junto a mi hijo para su proyecto escolar de ciencias. Las preguntas finales nos sirvieron para debatir el consumo de agua en casa.",
+      "status": "approved",
+      "createdAt": 1794760317601,
+      "teacherReply": "¡Qué alegría inmensa, querida Estefanía! Ese asombro espontáneo en los ojos de los chicos es el corazón de la ciencia activa. ¡Un abrazo cálido a su grupo!"
+    },
+    {
+      "id": "comm-3",
+      "articleId": "art-fracciones-equiv",
+      "authorName": "Visitante_982",
+      "authorType": "guest",
+      "authorBadge": "Anónimo",
+      "schoolInfo": "IP: 179.53.*.* • Sin credenciales",
+      "content": "Para resolver rápido sus tareas miren este link gratis en hxxp://descarga-examenes-rd.cc y ganen puntos sin estudiar.",
+      "status": "pending",
+      "isSpamAlert": true,
+      "createdAt": 1794839517601,
+      "teacherReply": null
+    }
+  ],
+  "media": [
+    {
+      "id": "media-esquema-ciclo",
+      "title": "Esquema ciclo del agua RD",
+      "category": "infografias",
+      "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+      "sizeKB": 420,
+      "dimensions": "1200x800",
+      "altText": "Diagrama del ciclo del agua en la Cordillera Central y costas dominicanas",
+      "associatedArticle": "El ciclo del agua y su importancia para la vida",
+      "createdAt": 1728864000000
+    },
+    {
+      "id": "media-manglares",
+      "title": "Manglares costa norte Samaná",
+      "category": "portadas",
+      "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "sizeKB": 310,
+      "dimensions": "1200x800",
+      "altText": "Vista de manglares y estuario tropical",
+      "associatedArticle": "Ecosistemas Costeros y Manglares de Samaná",
+      "createdAt": 1729382400000
+    },
+    {
+      "id": "media-fracciones",
+      "title": "Material didáctico fracciones",
+      "category": "fichas",
+      "url": "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=1200&q=80",
+      "sizeKB": 280,
+      "dimensions": "1080x720",
+      "altText": "Caja con regletas de madera fraccionarias",
+      "associatedArticle": "Comprendiendo las fracciones equivalentes",
+      "createdAt": 1730505600000
+    }
+  ],
+  "settings": [
+    {
+      "key": "teacherProfile",
+      "name": "Lic. Ramona Almonte",
+      "title": "Lic.",
+      "role": "Especialista en Didáctica",
+      "specialty": "Educación Primaria • Mención Ciencias",
+      "school": "Distrito Educativo 10-01",
+      "yearsExperience": 14,
+      "bio": "Educar con ternura y firmeza es encender una antorcha que nunca dejará de alumbrar el porvenir de nuestra patria.",
+      "photoUrl": "",
+      "updatedAt": 1794846717610
+    }
+  ]
+}
