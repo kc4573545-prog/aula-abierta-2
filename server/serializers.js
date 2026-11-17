@@ -1,6 +1,11 @@
 // Convierte filas de PostgreSQL al formato que espera el frontend (camelCase, fechas en ms).
 const ms = (d) => (d ? new Date(d).getTime() : null);
 
+// Quita del nombre cualquier título al inicio ("Lic. Ramona" -> "Ramona") para que el título
+// se guarde solo en su propio campo y no salga repetido ("Lic. Lic. Ramona").
+const TITLE_RE = /^(?:(?:lic|licda|lcdo|lcda|mtr|mtra|dr|dra|ing|prof|profa|tec)\.?\s+)+/i;
+const stripTitle = (name) => String(name || '').trim().replace(TITLE_RE, '').trim();
+
 function article(r) {
   const a = {
     id: r.id,
@@ -67,7 +72,7 @@ function media(r) {
 function profile(r) {
   return {
     key: 'teacherProfile',
-    name: r.name,
+    name: stripTitle(r.name) || r.name,
     title: r.title,
     role: r.role,
     specialty: r.specialty,
@@ -79,4 +84,4 @@ function profile(r) {
   };
 }
 
-module.exports = { article, comment, publicComment, media, profile, ms };
+module.exports = { stripTitle, article, comment, publicComment, media, profile, ms };

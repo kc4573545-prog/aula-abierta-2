@@ -195,6 +195,18 @@
         'box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:60;cursor:pointer';
       b.addEventListener('click', () => { if (confirm('¿Cerrar la sesión del panel docente?')) window.AulaAbiertaDB.logout(); });
       document.body.appendChild(b);
+
+      if (currentPage() !== 'perfil') {
+        const p = document.createElement('a');
+        p.href = 'perfil.html';
+        p.title = 'Editar mi perfil';
+        p.setAttribute('aria-label', 'Editar mi perfil');
+        p.innerHTML = '<span class="material-symbols-outlined" style="font-size:20px">manage_accounts</span>';
+        p.style.cssText = 'position:fixed;left:12px;bottom:128px;width:40px;height:40px;border-radius:9999px;' +
+          'background:#0f2042;color:#fff;display:flex;align-items:center;justify-content:center;opacity:.75;' +
+          'box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:60;text-decoration:none';
+        document.body.appendChild(p);
+      }
     });
   }
 })();

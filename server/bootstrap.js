@@ -75,8 +75,22 @@ async function seedDemoData({ force = false } = {}) {
   }
 }
 
+// Corrige perfiles ya guardados con el título dentro del nombre ("Lic. Ramona" + título "Lic.").
+async function fixProfileName() {
+  await pool.query(
+    `UPDATE teacher_profile
+        SET name = btrim(regexp_replace(name, '^((lic|licda|lcdo|lcda|mtr|mtra|dr|dra|ing|prof|profa|tec)\\.?\\s+)+', '', 'i'))
+      WHERE id = 1 AND name ~* '^((lic|licda|lcdo|lcda|mtr|mtra|dr|dra|ing|prof|profa|tec)\\.?\\s+)+\\S'`
+  );
+  await pool.query(
+    `UPDATE articles SET author = btrim(regexp_replace(author, '^((lic|mtr|mtra|dr|dra|ing|prof|tec)\\.?\\s+)+', '', 'i'))
+      WHERE author = (SELECT title || ' ' || name FROM teacher_profile WHERE id = 1 AND title <> '')`
+  );
+}
+
 async function bootstrap() {
   await migrate();
+  await fixProfileName();
   await ensureAdmin();
   if ((process.env.SEED_DEMO_DATA || '').toLowerCase() === 'true') await seedDemoData();
 }

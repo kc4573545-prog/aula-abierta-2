@@ -27,12 +27,17 @@
 
   let cachedProfile = null;
 
+  // Quita del nombre cualquier título inicial ("Lic. Ramona" -> "Ramona"); el título vive en su propio campo.
+  const TITLE_RE = /^(?:(?:lic|licda|lcdo|lcda|mtr|mtra|dr|dra|ing|prof|profa|tec)\.?\s+)+/i;
+  function cleanName(n) { return String(n || '').trim().replace(TITLE_RE, '').trim(); }
+
   async function getProfile() {
     if (cachedProfile) return cachedProfile;
     const db = window.AulaAbiertaDB;
     if (!db) return null;
     try {
       cachedProfile = await db.getTeacherProfile();
+      cachedProfile.name = cleanName(cachedProfile.name) || cachedProfile.name;
       return cachedProfile;
     } catch (e) {
       console.warn('[profile-loader] Error cargando perfil:', e);
