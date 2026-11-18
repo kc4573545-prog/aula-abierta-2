@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Planificador de clases — Aula Abierta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--deep:#0b1f5c;--blue:#14307f;--sky:#7cc4f5;--pastel:#e9f1ff;--violet:#7d6bd0;--vsoft:#ece6ff;--gold:#d4a62a;--gsoft:#f6e3a1;--ink:#14183a;--mut:#5b6190}
+*{box-sizing:border-box}body{margin:0;font-family:Poppins,system-ui,sans-serif;color:var(--ink)}
+.ms{font-family:'Material Symbols Outlined';font-size:22px;display:inline-block;width:1.1em;height:1.1em;overflow:hidden;vertical-align:middle;line-height:1}
+.top{background:linear-gradient(135deg,var(--deep),#1d3d99 60%,var(--violet));color:#fff;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 16px;border-bottom:3px solid var(--gold)}
+.top a{color:var(--gsoft);text-decoration:none;font-size:13px}.top h1{margin:4px 0 0;font-size:20px;color:#fff}.top p{margin:2px 0 0;font-size:13px;opacity:.85}
+main{padding:14px 14px 120px;max-width:960px;margin:0 auto}
+.card{background:#fff;border:1px solid #dbe4fb;border-top:4px solid var(--c,var(--sky));border-radius:16px;padding:14px;margin:0 0 14px;box-shadow:0 6px 18px rgba(30,60,140,.08)}
+.card h2{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px;color:var(--deep)}.card h2 .ms{color:var(--c,var(--blue))}
+label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin:8px 0 3px}
+input,select,textarea{width:100%;font:inherit;font-size:14px;padding:9px 11px;border:1px solid #cfd8f3;border-radius:10px;background:#fbfcff;color:var(--ink)}
+textarea{min-height:84px;resize:vertical}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(212,166,42,.35)}
+.g2{display:grid;gap:0 12px}@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)!important}}.g3{display:grid;gap:12px}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:600 14px Poppins,sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center;text-decoration:none}
+.pri{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff}.sec{background:var(--vsoft);color:var(--deep)}.gold{background:var(--gsoft);color:#5a4300}.dng{background:#ffe9e9;color:#a32020}
+.types{display:flex;gap:8px;flex-wrap:wrap}.types label{margin:0;flex:1;min-width:96px;text-align:center;border:2px solid #cfd8f3;border-radius:12px;padding:9px 6px;cursor:pointer;color:var(--ink);font-size:13px}
+.types label{position:relative}.types input{position:absolute;opacity:0;width:1px;height:1px}.types label:has(input:focus-visible){outline:3px solid var(--violet)}.types input:checked+span{font-weight:700}.types label:has(input:checked){border-color:var(--gold);background:var(--gsoft)}
+.item{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.item b{font-size:15px}.item small{color:var(--mut)}
+.tag{font-size:11px;padding:2px 9px;border-radius:99px;background:var(--vsoft);color:var(--deep);margin-left:4px}.tag.f{background:#dff5e6;color:#176b36}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:2px solid var(--gold);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center}
+.meter{height:10px;border-radius:9px;background:#e3eafc;overflow:hidden;margin-top:8px}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--violet));transition:width .3s}
+.warn{color:#a35b00;font-size:12px;margin-top:6px}.ok{color:#176b36}.empty{text-align:center;color:var(--mut);padding:30px 10px}.hide{display:none!important}
+#sheet{display:none}
+@media print{body>*:not(#sheet){display:none!important}body{background:#fff!important}body::before{display:none!important}
+#sheet{display:block;font:12px/1.45 Georgia,serif;color:#000;padding:0}@page{margin:15mm}
+#sheet h1{font:700 20px Georgia,serif;color:#0b1f5c;border-bottom:3px double #d4a62a;padding-bottom:6px;margin:0 0 4px}#sheet .sub{color:#555;margin:0 0 10px}
+#sheet table{width:100%;border-collapse:collapse;margin:0 0 10px}#sheet th,#sheet td{border:1px solid #8a93b8;padding:5px 7px;vertical-align:top;text-align:left}
+#sheet th{background:#e9f1ff;color:#0b1f5c;width:26%}#sheet h2{font:700 13px Georgia,serif;color:#0b1f5c;border-left:5px solid #d4a62a;padding-left:7px;margin:12px 0 4px;break-after:avoid}
+#sheet .t{white-space:pre-wrap;margin:0 0 6px}#sheet .sig{display:flex;gap:40px;margin-top:38px}#sheet .sig div{flex:1;border-top:1px solid #000;text-align:center;padding-top:3px}#sheet tr,#sheet h2{break-inside:avoid}}
+
+.ms{visibility:hidden}.fok .ms{visibility:visible}</style></head><body>
+<header class="top"><a href="herramientas.html">← Centro de Herramientas Docentes</a><h1><span class="ms">edit_calendar</span> Planificador de clases</h1><p>Crea, guarda e imprime tus planificaciones.</p></header>
+<main>
+<section id="listView">
+ <div class="card" style="--c:var(--violet)"><div class="item"><input id="q" placeholder="Buscar por título, asignatura o grado…" style="flex:1;min-width:200px"/><button class="btn pri" id="newBtn"><span class="ms">add</span>Nueva planificación</button></div></div>
+ <div id="list"></div>
+</section>
+<section id="editView" class="hide">
+ <div class="card" style="--c:var(--sky)"><h2><span class="ms">category</span>Tipo de planificación</h2>
+  <div class="types" id="types"><label><input type="radio" name="pt" value="diaria"/><span>📅 Diaria</span></label><label><input type="radio" name="pt" value="semanal"/><span>🗓️ Semanal</span></label><label><input type="radio" name="pt" value="unidad"/><span>📚 Unidad didáctica</span></label></div></div>
+ <div class="card" style="--c:var(--blue)"><h2><span class="ms">badge</span>Datos generales</h2>
+  <label>Título de la planificación</label><input data-top="title" maxlength="200"/>
+  <div class="g2"><div><label>Asignatura / módulo</label><input data-top="subject"/></div><div><label>Grado</label><input data-top="grade"/></div>
+  <div><label>Centro educativo</label><input data-k="school"/></div><div><label>Docente</label><input data-k="teacher"/></div>
+  <div><label id="perLbl">Fecha</label><input data-k="period"/></div><div><label>Duración total (minutos)</label><input data-top="total_minutes" type="number" min="0" inputmode="numeric"/></div></div>
+  <button class="btn sec" id="fromProfile" style="margin-top:10px"><span class="ms">person</span>Rellenar docente y centro desde mi perfil</button></div>
+ <div class="card" style="--c:var(--gold)"><h2><span class="ms">lightbulb</span>Situación de aprendizaje</h2><textarea data-k="situacion" placeholder="Describe la situación o problema real que da sentido al aprendizaje"></textarea></div>
+ <div class="card" style="--c:var(--violet)"><h2><span class="ms">military_tech</span>Competencias, resultados e indicadores</h2>
+  <label>Competencias</label><textarea data-k="competencias"></textarea><label>Resultados de aprendizaje</label><textarea data-k="resultados"></textarea><label>Indicadores de logro</label><textarea data-k="indicadores"></textarea></div>
+ <div class="card" style="--c:var(--sky)"><h2><span class="ms">menu_book</span>Contenidos</h2><textarea data-k="contenidos" placeholder="Conceptuales, procedimentales y actitudinales"></textarea></div>
+ <div class="card" style="--c:var(--gold)"><h2><span class="ms">schedule</span>Actividades por momentos</h2>
+  <div class="g3" id="moms"></div><div class="meter"><i id="mt"></i></div><div id="mInfo" class="warn"></div></div>
+ <div class="card" style="--c:var(--blue)"><h2><span class="ms">psychology</span>Estrategias y recursos</h2><label>Estrategias de enseñanza-aprendizaje</label><textarea data-k="estrategias"></textarea><label>Recursos</label><textarea data-k="recursos"></textarea></div>
+ <div class="card" style="--c:var(--violet)"><h2><span class="ms">fact_check</span>Evaluación</h2>
+  <div class="g2"><div><label>Técnicas de evaluación</label><textarea data-k="tecnicas"></textarea></div><div><label>Instrumentos de evaluación</label><textarea data-k="instrumentos"></textarea></div></div>
+  <label>Criterios / descripción de la evaluación</label><textarea data-k="evaluacion"></textarea><label>Observaciones</label><textarea data-k="observaciones" style="min-height:60px"></textarea>
+  <label>Estado</label><select data-top="status"><option value="borrador">Borrador</option><option value="final">Final</option></select></div>
+ <div class="bar"><button class="btn sec" id="backBtn"><span class="ms">arrow_back</span>Mis planes</button><button class="btn pri" id="saveBtn"><span class="ms">save</span>Guardar</button><button class="btn gold" id="printBtn"><span class="ms">print</span>Imprimir / PDF</button><span id="st" style="font-size:12px;color:var(--mut)"></span></div>
+</section>
+</main>
+<div id="sheet"></div>
+<script>
+(function(){'use strict';
+var TK='aa_token',MO=[['inicio','Inicio','flag'],['desarrollo','Desarrollo','rocket_launch'],['cierre','Cierre','task_alt']];
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var cur=null,dirty=false,timer=null,saving=false,plans=[],profile=null;
+function tok(){try{return localStorage.getItem(TK)||sessionStorage.getItem(TK)}catch(e){return null}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function login(){location.replace('admin-login.html?next='+encodeURIComponent('planificador.html'))}
+if(!tok())login();
+function api(m,p,b){var h={Accept:'application/json'};if(b!==undefined)h['Content-Type']='application/json';h.Authorization='Bearer '+tok();
+ return fetch('/api'+p,{method:m,headers:h,body:b!==undefined?JSON.stringify(b):undefined}).then(function(r){
+  if(r.status===401){try{localStorage.removeItem(TK);sessionStorage.removeItem(TK)}catch(e){}login();throw new Error('Sesión expirada')}
+  return r.json().catch(function(){return null}).then(function(d){if(!r.ok)throw new Error((d&&d.error)||'Error '+r.status);return d})},function(){throw new Error('No se pudo conectar con el servidor')})}
+function toast(t,ok){var d=document.createElement('div');d.textContent=t;d.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:90px;padding:10px 18px;border-radius:12px;color:#fff;font-size:13px;z-index:99;background:'+(ok===false?'#c0392b':'#14307f');document.body.appendChild(d);setTimeout(function(){d.remove()},2600)}
+// Momentos
+$('#moms').innerHTML=MO.map(function(m,i){return'<div style="background:'+['#e9f3ff','#f0eaff','#fff6dc'][i]+';border-radius:14px;padding:10px"><b><span class="ms">'+m[2]+'</span> '+m[1]+'</b><label>Minutos</label><input type="number" min="0" inputmode="numeric" data-m="'+m[0]+'" data-f="minutos"/><label>Actividades</label><textarea data-m="'+m[0]+'" data-f="actividades" style="min-height:130px"></textarea></div>'}).join('');
+var LBL={diaria:['Fecha','Ej.: 18/11/2026'],semanal:['Semana','Ej.: del 16 al 20 de noviembre'],unidad:['Período de la unidad','Ej.: 4 semanas, noviembre–diciembre']};
+function ptype(){var r=$('input[name=pt]:checked');return r?r.value:'diaria'}
+function setType(t){$$('input[name=pt]').forEach(function(r){r.checked=r.value===t});$('#perLbl').textContent=LBL[t][0];$('[data-k=period]').placeholder=LBL[t][1]}
+function sumMin(){return MO.reduce(function(a,m){return a+(parseInt($('[data-m='+m[0]+'][data-f=minutos]').value,10)||0)},0)}
+function meter(){var s=sumMin(),t=parseInt($('[data-top=total_minutes]').value,10)||0,i=$('#mInfo');$('#mt').style.width=(t?Math.min(100,s/t*100):(s?100:0))+'%';
+ if(!s)i.textContent='';else if(!t)i.innerHTML='Suma de momentos: <b>'+s+' min</b>';else if(s===t){i.className='warn ok';i.textContent='✔ Los tres momentos suman '+s+' min.'}
+ else{i.className='warn';i.textContent='Los momentos suman '+s+' min y la duración total es '+t+' min ('+(s>t?'excede en ':'faltan ')+Math.abs(s-t)+' min).'}}
+function collect(){var d={plan_type:ptype(),content:{momentos:{}}};
+ $$('[data-top]').forEach(function(e){d[e.dataset.top]=e.value});$$('[data-k]').forEach(function(e){d.content[e.dataset.k]=e.value});
+ MO.forEach(function(m){d.content.momentos[m[0]]={minutos:parseInt($('[data-m='+m[0]+'][data-f=minutos]').value,10)||0,actividades:$('[data-m='+m[0]+'][data-f=actividades]').value}});return d}
+function fill(p){var c=p.content||{};setType(p.plan_type||'diaria');
+ $$('[data-top]').forEach(function(e){e.value=p[e.dataset.top]==null?'':p[e.dataset.top]});$$('[data-k]').forEach(function(e){e.value=c[e.dataset.k]||''});
+ MO.forEach(function(m){var x=(c.momentos&&c.momentos[m[0]])||{};$('[data-m='+m[0]+'][data-f=minutos]').value=x.minutos||'';$('[data-m='+m[0]+'][data-f=actividades]').value=x.actividades||''});meter()}
+function save(manual){if(saving){dirty=true;return Promise.resolve()}clearTimeout(timer);var d=collect();saving=true;dirty=false;$('#st').textContent='Guardando…';
+ var q=cur?api('PUT','/lesson-plans/'+cur,d):api('POST','/lesson-plans',d);
+ return q.then(function(r){cur=r.id;$('#st').textContent='✔ Guardado '+new Date().toLocaleTimeString('es-DO',{hour:'2-digit',minute:'2-digit'});if(manual)toast('Planificación guardada')})
+  .catch(function(e){dirty=true;$('#st').textContent='⚠ Sin guardar';toast(e.message,false)}).then(function(){saving=false;if(dirty)sched()})}
+function sched(){dirty=true;clearTimeout(timer);$('#st').textContent='Cambios sin guardar…';timer=setTimeout(function(){save(false)},1800)}
+$('#editView').addEventListener('input',function(e){if(e.target.name==='pt')return;meter();sched()});
+$$('input[name=pt]').forEach(function(r){r.addEventListener('change',function(){setType(r.value);sched()})});
+function getProfile(){return profile?Promise.resolve(profile):fetch('/api/profile').then(function(r){return r.json()}).then(function(p){profile=p;return p}).catch(function(){return{}})}
+function applyProfile(force){return getProfile().then(function(p){var t=$('[data-k=teacher]'),s=$('[data-k=school]');if(force||!t.value)t.value=p.name||'';if(force||!s.value)s.value=p.school||'';if(force)sched()})}
+$('#fromProfile').onclick=function(){applyProfile(true)};
+function openEdit(p){cur=p&&p.id||null;fill(p||{plan_type:'diaria',status:'borrador',content:{}});$('#listView').classList.add('hide');$('#editView').classList.remove('hide');$('#st').textContent=cur?'':'Nueva planificación';scrollTo(0,0);if(!p)applyProfile(false)}
+function back(){clearTimeout(timer);(dirty?save(false):Promise.resolve()).then(function(){$('#editView').classList.add('hide');$('#listView').classList.remove('hide');load()})}
+$('#backBtn').onclick=back;$('#saveBtn').onclick=function(){save(true)};$('#newBtn').onclick=function(){openEdit(null)};
+// Lista
+var TL={diaria:'Diaria',semanal:'Semanal',unidad:'Unidad didáctica'};
+function render(){var t=$('#q').value.toLowerCase().trim(),l=plans.filter(function(p){return!t||[p.title,p.subject,p.grade].join(' ').toLowerCase().indexOf(t)>-1});
+ $('#list').innerHTML=l.length?l.map(function(p){return'<div class="card" style="--c:'+(p.status==='final'?'var(--gold)':'var(--sky)')+'"><div class="item"><div><b>'+esc(p.title||'Sin título')+'</b><span class="tag">'+TL[p.plan_type]+'</span><span class="tag'+(p.status==='final'?' f':'')+'">'+(p.status==='final'?'Final':'Borrador')+'</span><br><small>'+esc([p.subject,p.grade,p.period,p.total_minutes?p.total_minutes+' min':''].filter(Boolean).join(' · '))+' — editado '+new Date(p.updated_at).toLocaleDateString('es-DO')+'</small></div><div><button class="btn sec" data-a="edit" data-id="'+esc(p.id)+'"><span class="ms">edit</span>Abrir</button> <button class="btn sec" data-a="dup" data-id="'+esc(p.id)+'"><span class="ms">content_copy</span></button> <button class="btn dng" data-a="del" data-id="'+esc(p.id)+'"><span class="ms">delete</span></button></div></div></div>'}).join(''):'<div class="empty"><span class="ms" style="font-size:44px;color:var(--violet)">edit_calendar</span><p>'+(plans.length?'No hay resultados.':'Aún no tienes planificaciones. ¡Crea la primera!')+'</p></div>'}
+function load(){api('GET','/lesson-plans').then(function(r){plans=r;render()}).catch(function(e){$('#list').innerHTML='<div class="empty">'+esc(e.message)+'</div>'})}
+$('#q').oninput=render;
+$('#list').addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var id=b.dataset.id,a=b.dataset.a;
+ if(a==='edit')api('GET','/lesson-plans/'+id).then(openEdit).catch(function(x){toast(x.message,false)});
+ if(a==='dup')api('POST','/lesson-plans/'+id+'/duplicate').then(function(){toast('Planificación duplicada');load()}).catch(function(x){toast(x.message,false)});
+ if(a==='del'&&confirm('¿Eliminar esta planificación? No se puede deshacer.'))api('DELETE','/lesson-plans/'+id).then(function(){toast('Eliminada');load()}).catch(function(x){toast(x.message,false)})});
+// Impresión
+function T(v){return v&&String(v).trim()?'<p class="t">'+esc(v)+'</p>':'<p class="t" style="color:#888">—</p>'}
+function sheet(){var d=collect(),c=d.content,s=sumMin(),per=LBL[d.plan_type][0];
+ var rows=function(a){return a.map(function(x){return'<tr><th>'+x[0]+'</th><td>'+esc(x[1]||'—')+'</td></tr>'}).join('')};
+ var sec=function(h,v){return'<h2>'+h+'</h2>'+T(v)};
+ $('#sheet').innerHTML='<h1>Planificación de clase — '+TL[d.plan_type]+'</h1><p class="sub">'+esc(d.title)+'</p><table>'+rows([['Centro educativo',c.school],['Docente',c.teacher],['Asignatura / módulo',d.subject],['Grado',d.grade],[per,c.period],['Duración total',(d.total_minutes||s)?(d.total_minutes||s)+' minutos':'']])+'</table>'
+ +sec('Situación de aprendizaje',c.situacion)+sec('Competencias',c.competencias)+sec('Resultados de aprendizaje',c.resultados)+sec('Indicadores de logro',c.indicadores)+sec('Contenidos',c.contenidos)
+ +'<h2>Actividades por momentos</h2><table><tr><th style="width:18%">Momento</th><th style="width:12%">Tiempo</th><th>Actividades</th></tr>'+MO.map(function(m){var x=c.momentos[m[0]];return'<tr><td><b>'+m[1]+'</b></td><td>'+(x.minutos?x.minutos+' min':'—')+'</td><td style="white-space:pre-wrap">'+esc(x.actividades||'—')+'</td></tr>'}).join('')+'<tr><td><b>Total</b></td><td><b>'+s+' min</b></td><td></td></tr></table>'
+ +sec('Estrategias de enseñanza-aprendizaje',c.estrategias)+sec('Recursos',c.recursos)+'<h2>Evaluación</h2><table><tr><th>Técnicas</th><td style="white-space:pre-wrap">'+esc(c.tecnicas||'—')+'</td></tr><tr><th>Instrumentos</th><td style="white-space:pre-wrap">'+esc(c.instrumentos||'—')+'</td></tr></table>'+T(c.evaluacion)
+ +(c.observaciones?sec('Observaciones',c.observaciones):'')+'<div class="sig"><div>Docente</div><div>Coordinación docente</div></div>'}
+$('#printBtn').onclick=function(){sheet();window.print()};window.addEventListener('beforeprint',function(){if(!$('#editView').classList.contains('hide'))sheet()});
+window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=''}});
+if(tok())load();
+window.__planificador={collect:collect,fill:fill,sumMin:sumMin,sheet:sheet};
+})();
+</script><script>try{document.fonts.load('22px "Material Symbols Outlined"').then(function(f){if(f.length)document.body.classList.add('fok')})}catch(e){}</script></body></html>

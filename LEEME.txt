@@ -1,0 +1,33 @@
+AULA ABIERTA — Rediseño + Centro de Herramientas Docentes (las 5 herramientas)
+
+ESTE ZIP SE COPIA ENCIMA DE TU REPOSITORIO aula-abierta-2, respetando las carpetas (public/ y server/).
+
+ARCHIVOS NUEVOS
+  public/herramientas.html     Centro de Herramientas Docentes (menú)
+  public/planificador.html     1. Planificador de clases
+  public/rubricas.html         2. Generador de rúbricas
+  public/calificaciones.html   3. Calculadora de calificaciones
+  public/cuestionarios.html    4. Generador de cuestionarios
+  public/contabilidad.html     5. Laboratorio de Contabilidad
+  public/herr.js, herr.css     Base común de las herramientas 2 a 4 (lista, guardado, autoguardado, impresión)
+  public/aula-theme.css, aula-theme.js, server/theme.js   Rediseño visual + botón dorado "Herramientas" en el panel
+  server/routes/lessonPlans.js + server/lesson-plans.sql   API y tabla del Planificador
+  server/routes/toolDocs.js + server/tool-docs.sql         API y tabla de rúbricas, calificaciones, cuestionarios y contabilidad
+
+ARCHIVO MODIFICADO
+  server/index.js   Registra las dos rutas nuevas y crea las tablas al arrancar (CREATE TABLE IF NOT EXISTS)
+
+NO SE TOCAN: db.js, profile-loader.js, ninguna página existente, schema.sql, rutas existentes, datos ni perfil.
+CÓMO VOLVER ATRÁS: restaurar server/index.js original y borrar los archivos nuevos (las tablas nuevas pueden quedarse).
+
+HAZ PRIMERO UNA COPIA: en GitHub crea la rama "respaldo-antes-del-centro-de-herramientas" desde main.
+
+CÓMO PROBAR (tras el despliegue en Render)
+ 0. /api/health debe responder {"status":"ok"}. El blog, el panel, comentarios, biblioteca, editor y perfil deben funcionar como antes.
+ 1. Botón dorado (llave) en el panel → Centro de Herramientas.
+ 2. Planificador: nueva planificación, tipo diaria/semanal/unidad, momentos con minutos, guardar, imprimir/PDF.
+ 3. Rúbricas: agrega criterios y niveles; el puntaje máximo se calcula solo; imprime.
+ 4. Calificaciones: elige escala, pega nombres, escribe notas y pesos; mira finales, aprobados y promedio; imprime.
+ 5. Cuestionarios: crea preguntas de selección múltiple y verdadero/falso, marca la correcta, usa «Probar cuestionario» y «Corregir»; imprime (incluye clave de respuestas).
+ 6. Contabilidad: resuelve asientos y cálculos de ITBIS, mayor, balanza y estados; «Verificar». Cierra sesión y vuelve: el progreso sigue.
+ 7. En cada herramienta cierra sesión, vuelve a entrar y comprueba que lo guardado sigue ahí.

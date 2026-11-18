@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const { pool } = require('./db');
 const { bootstrap } = require('./bootstrap');
+const { themeMiddleware } = require('./theme');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,12 +36,22 @@ app.use('/api/articles', require('./routes/articles'));
 app.use('/api/comments', require('./routes/comments'));
 app.use('/api/media', require('./routes/media'));
 app.use('/api/profile', require('./routes/profile'));
+const lessonPlans = require('./routes/lessonPlans'); // Centro de Herramientas Docentes
+app.use('/api/lesson-plans', lessonPlans);
+const toolDocs = require('./routes/toolDocs');
+app.use('/api/tool-docs', toolDocs);
 app.use('/api', (_req, res) => res.status(404).json({ error: 'Ruta no encontrada' }));
 
 // ── Frontend estático ──
 const publicDir = path.join(__dirname, '..', 'public');
+// Rediseño visual: las páginas HTML se sirven con el tema aplicado (solo presentación).
+const themed = themeMiddleware(publicDir);
+app.use(themed);
 app.use(express.static(publicDir, { extensions: ['html'], maxAge: '1h' }));
-app.get('*', (_req, res) => res.sendFile(path.join(publicDir, 'index.html')));
+app.get('*', (req, res) => {
+  req.url = '/';
+  themed(req, res, () => res.sendFile(path.join(publicDir, 'index.html')));
+});
 
 // ── Errores ──
 // eslint-disable-next-line no-unused-vars
@@ -52,6 +63,8 @@ app.use((err, _req, res, _next) => {
 });
 
 bootstrap()
+  .then(() => lessonPlans.ensureSchema())
+  .then(() => toolDocs.ensureSchema())
   .then(() => app.listen(PORT, () => console.log(`Aula Abierta escuchando en el puerto ${PORT}`)))
   .catch((e) => {
     console.error('[bootstrap] Falló el arranque:', e);

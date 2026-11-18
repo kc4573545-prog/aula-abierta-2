@@ -1,0 +1,38 @@
+/* Aula Abierta — tema visual: azul profundo, celeste, azul pastel, violeta suave y dorado */
+:root{--aa-deep:#0b1f5c;--aa-blue:#14307f;--aa-sky:#7cc4f5;--aa-pastel:#dde8ff;--aa-violet:#7d6bd0;--aa-violet-soft:#ece6ff;--aa-gold:#d4a62a;--aa-gold-soft:#f6e3a1}
+html{scroll-behavior:smooth}
+body{background:linear-gradient(180deg,#eef3ff 0%,#f6f3ff 55%,#fff8e6 100%) fixed!important;color:#14183a}
+body.bg-surface,main.bg-surface,main{background-color:transparent!important}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%237cc4f5' stroke-width='2' opacity='.55'%3E%3Cpath d='M20 40h22a8 8 0 0 1 8 8v26a8 8 0 0 0-8-8H20zM50 48a8 8 0 0 1 8-8h22v26H58a8 8 0 0 0-8 8z'/%3E%3C/g%3E%3Cg stroke='%23d4a62a' stroke-width='2' opacity='.5'%3E%3Cpath d='M150 30a14 14 0 0 1 8 25v8h-16v-8a14 14 0 0 1 8-25zM146 70h12'/%3E%3C/g%3E%3Cg stroke='%237d6bd0' stroke-width='2' opacity='.45'%3E%3Cpath d='M30 150l22-10 22 10-22 10zM42 156v12c6 6 18 6 22 0v-12M76 150v14'/%3E%3C/g%3E%3Cg stroke='%237cc4f5' stroke-width='2' opacity='.5'%3E%3Cpath d='M150 160l26-26 8 8-26 26-12 4zM172 138l8 8'/%3E%3C/g%3E%3Cg stroke='%23d4a62a' stroke-width='2' opacity='.4'%3E%3Ccircle cx='110' cy='112' r='5'/%3E%3Cpath d='M110 100v-8M110 132v-8M98 112h-8M130 112h-8M101 103l-6-6M125 127l-6-6M119 103l6-6M95 127l6-6'/%3E%3C/g%3E%3C/svg%3E");background-size:220px}
+main{position:relative}
+/* Encabezado y navegación */
+header.fixed{background:linear-gradient(90deg,rgba(255,255,255,.94),rgba(236,242,255,.94) 60%,rgba(240,234,255,.94))!important;backdrop-filter:blur(14px);border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--aa-gold),var(--aa-sky),var(--aa-violet)) 1;box-shadow:0 4px 18px rgba(20,48,127,.10)!important;z-index:50}
+nav[class*="fixed"]{background:rgba(255,255,255,.94)!important;backdrop-filter:blur(14px);border-top:2px solid transparent!important;border-image:linear-gradient(90deg,var(--aa-gold),var(--aa-sky),var(--aa-violet)) 1;box-shadow:0 -4px 18px rgba(20,48,127,.10)!important;z-index:50}
+/* Tarjetas de colores */
+main article,main .bg-surface-container-lowest.rounded-xl,main .bg-surface-container-low.rounded-xl{border:1px solid #dbe4fb;border-top:4px solid var(--c,var(--aa-sky));box-shadow:0 8px 22px rgba(30,60,140,.09)!important;transition:transform .25s,box-shadow .25s}
+main article:hover,main .bg-surface-container-lowest.rounded-xl:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(30,60,140,.16)!important}
+main :nth-child(4n+1)>article,main article:nth-child(4n+1),main .rounded-xl:nth-child(4n+1){--c:var(--aa-sky)}
+main article:nth-child(4n+2),main .rounded-xl:nth-child(4n+2){--c:var(--aa-violet)}
+main article:nth-child(4n+3),main .rounded-xl:nth-child(4n+3){--c:var(--aa-gold)}
+main article:nth-child(4n+4),main .rounded-xl:nth-child(4n+4){--c:#3f6fd9}
+.bg-surface-container-low.rounded-xl,.bg-secondary-fixed\/30,.bg-secondary-fixed{background-image:linear-gradient(135deg,#e9f3ff,#f0eaff)}
+/* Héroes y botones principales */
+.bg-primary-container{background-image:linear-gradient(135deg,#0b1f5c 0%,#1d3d99 55%,#5b4bc4 100%)!important;position:relative}
+.bg-primary-container.rounded-xl{border:1px solid rgba(212,166,42,.55);box-shadow:0 10px 28px rgba(11,31,92,.28)!important}
+.bg-primary:not(.text-primary){background-image:linear-gradient(135deg,#14307f,#6a58cf)!important}
+button.bg-primary:hover,a.bg-primary:hover{filter:brightness(1.08);box-shadow:0 0 0 3px rgba(212,166,42,.35)}
+.aa-deco{position:absolute;right:-4px;bottom:-6px;width:150px;height:110px;opacity:.38;pointer-events:none;z-index:0}
+/* Títulos con detalle dorado */
+main h1,main h2{color:var(--aa-deep)}.bg-primary-container h1,.bg-primary-container h2{color:#fff!important}
+main section>div>h3,main section>h3,main h3.font-title-md{position:relative}
+main section>div>h3::after,main section>h3::after{content:"";display:block;width:34px;height:3px;border-radius:3px;margin-top:3px;background:linear-gradient(90deg,var(--aa-gold),var(--aa-gold-soft))}
+/* Foto del perfil docente */
+img[data-tp="photo"],img[alt*="Profile" i],img[alt*="Perfil" i]{border:2px solid var(--aa-gold)!important;box-shadow:0 0 0 3px rgba(125,107,208,.28),0 6px 16px rgba(20,48,127,.25)!important;background:linear-gradient(135deg,#dde8ff,#ece6ff)}
+/* Campos y enfoque */
+input:focus,textarea:focus,select:focus{outline:none!important;border-color:var(--aa-violet)!important;box-shadow:0 0 0 3px rgba(212,166,42,.35)!important}
+::selection{background:var(--aa-gold-soft);color:var(--aa-deep)}
+/* Celular */
+@media (max-width:480px){main article,.rounded-xl{border-radius:1.1rem}.aa-deco{width:120px;height:90px}}
+@media (min-width:768px){main{max-width:1100px;margin-left:auto;margin-right:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

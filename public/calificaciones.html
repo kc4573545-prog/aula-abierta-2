@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><title>Calculadora de calificaciones — Aula Abierta</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="herr.css"/></head><body><script src="herr.js"></script>
+<script>
+(function(){'use strict';var esc=H.esc,n=H.n;
+
+var PRE={'100/70':[100,70],'20/10':[20,10],'10/6':[10,6],'5/3':[5,3]};
+function letter(p){return p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F'}
+function calc(c){var m=n(c.scale.max)||100,ps=n(c.scale.pass),sw=c.evals.reduce(function(a,e){return a+n(e.w)},0);
+ var rows=c.studs.map(function(s){var sum=0,w=0;c.evals.forEach(function(e,j){if(s.g[j]!==''&&s.g[j]!=null){sum+=n(s.g[j])*n(e.w);w+=n(e.w)}});var f=w?sum/w:null;
+  return{f:f,pct:f==null?null:f/m*100,ok:f==null?null:f>=ps}});
+ var fin=rows.filter(function(r){return r.f!=null}).map(function(r){return r.f});
+ return{rows:rows,sw:sw,avg:fin.length?fin.reduce(function(a,b){return a+b},0)/fin.length:null,max:fin.length?Math.max.apply(null,fin):null,min:fin.length?Math.min.apply(null,fin):null,ap:rows.filter(function(r){return r.ok===true}).length,rp:rows.filter(function(r){return r.ok===false}).length}}
+var r2=function(v){return v==null?'—':(Math.round(v*100)/100).toString()};
+H.mount({tool:'calificaciones',title:'Calculadora de calificaciones',icon:'calculate',
+blank:function(){return{info:{asig:'',grado:'',per:''},scale:{max:100,pass:70,letters:false},evals:[{n:'Evaluación 1',w:50},{n:'Evaluación 2',w:50}],studs:[{n:'',g:['','']}]}},
+edit:function(bx,c,ch){
+ function res(){var k=calc(c),m=n(c.scale.max)||100;
+  bx.querySelectorAll('[data-r]').forEach(function(el){var i=+el.dataset.i,r=k.rows[i],t=el.dataset.r;
+   el.textContent=t==='f'?r2(r.f):t==='p'?(r.pct==null?'—':r2(r.pct)+'%'):t==='l'?(r.pct==null?'—':letter(r.pct)):(r.ok==null?'—':r.ok?'Aprobado':'Reprobado');
+   if(t==='s')el.className=r.ok==null?'':r.ok?'ok':'bad'});
+  bx.querySelector('#sum').innerHTML='Promedio del grupo: <b>'+r2(k.avg)+'</b> · Máxima: <b>'+r2(k.max)+'</b> · Mínima: <b>'+r2(k.min)+'</b> · Aprobados: <b class="ok">'+k.ap+'</b> · Reprobados: <b class="bad">'+k.rp+'</b>'+(k.ap+k.rp?' · Aprobación: <b>'+r2(k.ap/(k.ap+k.rp)*100)+'%</b>':'');
+  bx.querySelector('#wn').textContent=k.sw===100?'✔ Los pesos suman 100%.':'⚠ Los pesos suman '+k.sw+'% (deberían sumar 100%). Las notas finales se calculan sobre los pesos de las evaluaciones con nota.'}
+ function draw(){var pr=Object.keys(PRE).filter(function(k){return PRE[k][0]===n(c.scale.max)&&PRE[k][1]===n(c.scale.pass)})[0]||'';
+  bx.innerHTML='<div class="card" style="--c:var(--blue)"><h2><span class="ms">badge</span>Datos y escala</h2><div class="row"><div class="g"><label>Asignatura</label><input data-p="info.asig" value="'+esc(c.info.asig)+'"/></div><div class="g"><label>Grado</label><input data-p="info.grado" value="'+esc(c.info.grado)+'"/></div><div class="g"><label>Período</label><input data-p="info.per" value="'+esc(c.info.per)+'"/></div></div>'
+  +'<div class="row"><div class="g"><label>Escala</label><select id="pre"><option value="">Personalizada</option><option value="100/70"'+(pr==='100/70'?' selected':'')+'>0–100 (aprueba 70)</option><option value="20/10"'+(pr==='20/10'?' selected':'')+'>0–20 (aprueba 10)</option><option value="10/6"'+(pr==='10/6'?' selected':'')+'>0–10 (aprueba 6)</option><option value="5/3"'+(pr==='5/3'?' selected':'')+'>0–5 (aprueba 3)</option></select></div><div class="g"><label>Nota máxima</label><input type="number" min="1" data-p="scale.max" value="'+esc(c.scale.max)+'"/></div><div class="g"><label>Nota mínima para aprobar</label><input type="number" min="0" step="any" data-p="scale.pass" value="'+esc(c.scale.pass)+'"/></div><div class="g"><label><input type="checkbox" data-p="scale.letters" style="width:auto"'+(c.scale.letters?' checked':'')+'/> Mostrar letra (A–F)</label></div></div></div>'
+  +'<div class="card" style="--c:var(--gold)"><h2><span class="ms">groups</span>Estudiantes y evaluaciones</h2><div class="wrap"><table class="t"><tr><th>Estudiante</th>'+c.evals.map(function(e,j){return'<th><input data-p="evals.'+j+'.n" value="'+esc(e.n)+'"/><input type="number" min="0" step="any" data-p="evals.'+j+'.w" value="'+esc(e.w)+'" title="Peso %"/><span class="mut">peso %</span> <button class="btn dng" data-a="re" data-i="'+j+'" style="padding:2px 7px">✕</button></th>'}).join('')+'<th>Final</th><th>%</th>'+(c.scale.letters?'<th>Letra</th>':'')+'<th>Estado</th><th></th></tr>'
+  +c.studs.map(function(s,i){return'<tr><td><input data-p="studs.'+i+'.n" value="'+esc(s.n)+'" placeholder="Nombre"/></td>'+c.evals.map(function(e,j){return'<td><input type="number" min="0" step="any" data-p="studs.'+i+'.g.'+j+'" value="'+esc(s.g[j])+'"/></td>'}).join('')+'<td class="big" data-r="f" data-i="'+i+'"></td><td data-r="p" data-i="'+i+'"></td>'+(c.scale.letters?'<td data-r="l" data-i="'+i+'"></td>':'')+'<td data-r="s" data-i="'+i+'"></td><td><button class="btn dng" data-a="rs" data-i="'+i+'">✕</button></td></tr>'}).join('')
+  +'</table></div><div class="row" style="margin-top:10px"><button class="btn sec" data-a="as"><span class="ms">person_add</span>Estudiante</button><button class="btn sec" data-a="ae"><span class="ms">add</span>Evaluación</button></div><label>Pegar lista de nombres (uno por línea)</label><textarea id="pl"></textarea><button class="btn sec" data-a="pl" style="margin-top:6px">Agregar nombres</button><p id="wn" class="mut"></p><p id="sum"></p></div>';res()}
+ bx.addEventListener('change',function(e){if(e.target.id==='pre'&&PRE[e.target.value]){c.scale.max=PRE[e.target.value][0];c.scale.pass=PRE[e.target.value][1];draw();ch()}if(e.target.dataset.p==='scale.letters')draw()});
+ bx.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,i=+b.dataset.i,z=function(){return c.evals.map(function(){return''})};
+  if(a==='as')c.studs.push({n:'',g:z()});if(a==='rs'&&c.studs.length>1)c.studs.splice(i,1);
+  if(a==='ae'){c.evals.push({n:'Evaluación '+(c.evals.length+1),w:0});c.studs.forEach(function(s){s.g.push('')})}
+  if(a==='re'&&c.evals.length>1){c.evals.splice(i,1);c.studs.forEach(function(s){s.g.splice(i,1)})}
+  if(a==='pl'){bx.querySelector('#pl').value.split('\n').map(function(s){return s.trim()}).filter(Boolean).forEach(function(nm){c.studs.push({n:nm,g:z()})});if(c.studs.length>1&&!c.studs[0].n)c.studs.shift()}
+  draw();ch()});
+ bx.addEventListener('input',function(e){if(e.target.dataset.p&&e.target.dataset.p!=='scale.letters')res()});draw()},
+print:function(t,c){var k=calc(c),i=c.info;return'<p>'+esc([i.asig,i.grado,i.per].filter(Boolean).join(' · '))+' — Escala 0–'+esc(c.scale.max)+', aprueba con '+esc(c.scale.pass)+'</p><table><tr><th>#</th><th>Estudiante</th>'+c.evals.map(function(e){return'<th>'+esc(e.n)+' ('+esc(e.w)+'%)</th>'}).join('')+'<th>Final</th><th>%</th>'+(c.scale.letters?'<th>Letra</th>':'')+'<th>Estado</th></tr>'
+ +c.studs.map(function(s,x){var r=k.rows[x];return'<tr><td>'+(x+1)+'</td><td>'+esc(s.n)+'</td>'+c.evals.map(function(e,j){return'<td>'+esc(s.g[j])+'</td>'}).join('')+'<td><b>'+r2(r.f)+'</b></td><td>'+(r.pct==null?'—':r2(r.pct)+'%')+'</td>'+(c.scale.letters?'<td>'+(r.pct==null?'—':letter(r.pct))+'</td>':'')+'<td>'+(r.ok==null?'—':r.ok?'Aprobado':'Reprobado')+'</td></tr>'}).join('')
+ +'</table><p>Promedio del grupo: <b>'+r2(k.avg)+'</b> · Máxima: '+r2(k.max)+' · Mínima: '+r2(k.min)+' · Aprobados: '+k.ap+' · Reprobados: '+k.rp+'</p><div class="sig"><div>Docente</div></div>'},
+});
+window.__calc=calc;
+
+})();
+</script></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><title>Laboratorio de Contabilidad — Aula Abierta</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="herr.css"/></head><body><script src="herr.js"></script>
+<script>
+(function(){'use strict';var esc=H.esc,n=H.n;
+
+var CU=['Caja','Banco','Cuentas por cobrar','Inventario de mercancías','ITBIS adelantado','ITBIS por pagar','Cuentas por pagar','Capital','Ventas','Costo de ventas','Gastos de alquiler','Gastos de salarios'];
+var EX=[
+{id:'a1',tipo:'asiento',t:'Asiento de diario: compra al contado',x:'Se compran mercancías al contado por RD$10,000 más ITBIS (18%). Se paga en efectivo.',sol:{'Inventario de mercancías':[10000,0],'ITBIS adelantado':[1800,0],'Caja':[0,11800]}},
+{id:'a2',tipo:'asiento',t:'Asiento de diario: venta a crédito',x:'Se venden mercancías a crédito por RD$20,000 más ITBIS (18%).',sol:{'Cuentas por cobrar':[23600,0],'Ventas':[0,20000],'ITBIS por pagar':[0,3600]}},
+{id:'a3',tipo:'asiento',t:'Asiento de diario: pago de alquiler',x:'Se paga en efectivo el alquiler del local: RD$15,000 (sin ITBIS).',sol:{'Gastos de alquiler':[15000,0],'Caja':[0,15000]}},
+{id:'i1',tipo:'num',t:'ITBIS: cálculo sobre una venta',x:'Una venta tiene una base imponible de RD$45,000. Calcula el ITBIS (18%) y el total a cobrar.',f:[['ITBIS (18%)',8100],['Total a cobrar',53100]]},
+{id:'i2',tipo:'num',t:'ITBIS: liquidación del mes',x:'En el mes, el ITBIS cobrado en ventas fue RD$36,000 y el ITBIS pagado en compras (adelantado) fue RD$21,600. Calcula el ITBIS por pagar a la DGII.',f:[['ITBIS por pagar',14400]]},
+{id:'m1',tipo:'num',t:'Libro mayor: saldo de Caja',x:'Movimientos de Caja del diario: Debe 50,000 (aporte de capital); Haber 12,000 (compra); Debe 8,000 (cobro a cliente); Haber 5,000 (gasto). Calcula el saldo de la cuenta Caja (deudor).',f:[['Total Debe',58000],['Total Haber',17000],['Saldo de Caja',41000]]},
+{id:'b1',tipo:'num',t:'Balanza de comprobación',x:'Saldos: Caja 41,000 (D); Cuentas por cobrar 23,600 (D); Inventario 10,000 (D); Gastos 13,400 (D); Cuentas por pagar 18,000 (H); Capital 50,000 (H); Ventas 20,000 (H). Calcula los totales y la diferencia.',f:[['Total Debe',88000],['Total Haber',88000],['Diferencia',0]]},
+{id:'e1',tipo:'num',t:'Estados financieros',x:'Ingresos por ventas 120,000; costo de ventas 70,000; gastos operativos 30,000. Activos totales 200,000; pasivos totales 80,000. Calcula utilidad bruta, utilidad neta y patrimonio (Activos − Pasivos).',f:[['Utilidad bruta',50000],['Utilidad neta',20000],['Patrimonio',120000]]}];
+var P={done:{},tries:{}},docId=null,fmt=H.money;
+function num(v){v=String(v||'').replace(/[,\s]/g,'');return v===''?NaN:parseFloat(v)}
+function chkNum(e,vals){return e.f.every(function(f,i){return Math.abs(num(vals[i])-f[1])<0.01})}
+function chkAs(e,rows){var m={};rows.forEach(function(r){if(!r.c)return;var d=n(num(r.d)),h=n(num(r.h));if(!d&&!h)return;m[r.c]=m[r.c]||[0,0];m[r.c][0]+=d;m[r.c][1]+=h});
+ var td=0,th=0;Object.keys(m).forEach(function(k){td+=m[k][0];th+=m[k][1]});var bal=Math.abs(td-th)<0.01&&td>0;var ks=Object.keys(e.sol),same=Object.keys(m).length===ks.length&&ks.every(function(k){return m[k]&&Math.abs(m[k][0]-e.sol[k][0])<.01&&Math.abs(m[k][1]-e.sol[k][1])<.01});
+ return{ok:bal&&same,bal:bal,td:td,th:th}}
+function save(){var b={tool:'contabilidad',title:'Progreso del laboratorio',content:P};return(docId?H.api('PUT','/tool-docs/'+docId,b):H.api('POST','/tool-docs',b)).then(function(r){docId=r.id}).catch(function(e){H.toast('No se pudo guardar el progreso: '+e.message,false)})}
+function sel(v){return'<select>'+'<option value="">Cuenta…</option>'+CU.map(function(c){return'<option'+(c===v?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select>'}
+function card(e){var body;
+ if(e.tipo==='asiento')body='<div class="wrap"><table class="t"><tr><th>Cuenta</th><th style="width:120px">Debe</th><th style="width:120px">Haber</th></tr>'+[0,1,2,3].map(function(){return'<tr data-row><td>'+sel('')+'</td><td><input inputmode="decimal" data-d/></td><td><input inputmode="decimal" data-h/></td></tr>'}).join('')+'</table></div>';
+ else body=e.f.map(function(f){return'<label>'+esc(f[0])+' (RD$)</label><input inputmode="decimal" data-n/>'}).join('');
+ return'<div class="card" data-ex="'+e.id+'" style="--c:'+(P.done[e.id]?'#2e9e5b':'var(--violet)')+'"><h2><span class="ms">'+(e.tipo==='asiento'?'edit_note':'calculate')+'</span>'+esc(e.t)+' <span class="ok" data-mk>'+(P.done[e.id]?'✔':'')+'</span></h2><p>'+esc(e.x)+'</p>'+body+'<div class="row" style="margin-top:10px"><button class="btn pri" data-a="v">Verificar</button><button class="btn sec" data-a="s">Ver solución</button><button class="btn sec" data-a="r">Limpiar</button></div><div data-fb style="margin-top:8px"></div></div>'}
+function prog(){var d=EX.filter(function(e){return P.done[e.id]}).length;document.querySelector('#pg').innerHTML='Progreso: <b>'+d+' de '+EX.length+'</b> ejercicios correctos<div style="height:10px;border-radius:9px;background:#e3eafc;overflow:hidden;margin-top:6px"><i style="display:block;height:100%;width:'+(d/EX.length*100)+'%;background:linear-gradient(90deg,#7cc4f5,#7d6bd0)"></i></div>'}
+document.body.insertAdjacentHTML('afterbegin','<header class="top"><a href="herramientas.html">← Centro de Herramientas Docentes</a><h1><span class="ms">account_balance</span> Laboratorio de Contabilidad</h1></header><main><div class="card" style="--c:var(--gold)"><div id="pg"></div><p class="mut">Resuelve cada ejercicio y pulsa «Verificar». Los importes pueden escribirse con comas. ITBIS: 18%. Tu progreso se guarda automáticamente.</p></div><div id="ex"></div></main>');
+document.querySelector('#ex').innerHTML=EX.map(card).join('');prog();
+H.api('GET','/tool-docs?tool=contabilidad').then(function(l){if(l[0]){docId=l[0].id;return H.api('GET','/tool-docs/'+docId).then(function(d){P=d.content&&d.content.done?d.content:P;P.tries=P.tries||{};document.querySelector('#ex').innerHTML=EX.map(card).join('');prog()})}}).catch(function(e){H.toast(e.message,false)});
+document.querySelector('#ex').addEventListener('click',function(ev){var b=ev.target.closest('[data-a]');if(!b)return;var cd=b.closest('[data-ex]'),e=EX.filter(function(x){return x.id===cd.dataset.ex})[0],fb=cd.querySelector('[data-fb]'),a=b.dataset.a;
+ if(a==='r'){cd.querySelectorAll('input').forEach(function(i){i.value=''});cd.querySelectorAll('select').forEach(function(s){s.value=''});fb.innerHTML=''}
+ if(a==='s'){if(e.tipo==='asiento'){fb.innerHTML='<b>Solución:</b><table class="t"><tr><th>Cuenta</th><th>Debe</th><th>Haber</th></tr>'+Object.keys(e.sol).map(function(k){return'<tr><td>'+esc(k)+'</td><td>'+(e.sol[k][0]?fmt(e.sol[k][0]):'')+'</td><td>'+(e.sol[k][1]?fmt(e.sol[k][1]):'')+'</td></tr>'}).join('')+'</table>'}else fb.innerHTML='<b>Solución:</b> '+e.f.map(function(f){return esc(f[0])+': RD$'+fmt(f[1])}).join(' · ')}
+ if(a==='v'){var ok,msg='';
+  if(e.tipo==='asiento'){var rows=[].slice.call(cd.querySelectorAll('[data-row]')).map(function(r){return{c:r.querySelector('select').value,d:r.querySelector('[data-d]').value,h:r.querySelector('[data-h]').value}});var r=chkAs(e,rows);ok=r.ok;if(!ok)msg=!r.bal?'El asiento no está cuadrado: Debe '+fmt(r.td)+' ≠ Haber '+fmt(r.th)+'.':'El asiento cuadra, pero las cuentas o los importes no coinciden con la solución.'}
+  else{var vals=[].slice.call(cd.querySelectorAll('[data-n]')).map(function(i){return i.value});ok=chkNum(e,vals);if(!ok)msg='Algún resultado no es correcto. Revisa tus cálculos.'}
+  P.tries[e.id]=(P.tries[e.id]||0)+1;fb.innerHTML=ok?'<span class="ok">✔ ¡Correcto!</span>':'<span class="bad">✘ '+esc(msg)+'</span>';
+  if(ok){P.done[e.id]=true;cd.style.setProperty('--c','#2e9e5b');cd.querySelector('[data-mk]').textContent='✔'}prog();save()}});
+window.__chk={chkAs:chkAs,chkNum:chkNum,EX:EX};
+
+})();
+</script></body></html>

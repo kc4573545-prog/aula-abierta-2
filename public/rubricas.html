@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><title>Generador de rúbricas — Aula Abierta</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="herr.css"/></head><body><script src="herr.js"></script>
+<script>
+(function(){'use strict';var esc=H.esc,n=H.n;
+
+H.mount({tool:'rubrica',title:'Generador de rúbricas',icon:'grading',
+blank:function(){return{info:{asig:'',grado:'',act:''},levels:[{n:'Excelente',p:4},{n:'Bueno',p:3},{n:'Regular',p:2},{n:'Insuficiente',p:1}],crit:[{n:'',w:1,d:['','','','']}]}},
+edit:function(bx,c,ch){
+ function mx(){return Math.max.apply(null,c.levels.map(function(l){return n(l.p)}).concat([0]))}
+ function tot(){return c.crit.reduce(function(a,x){return a+n(x.w)*mx()},0)}
+ function upd(){var e=bx.querySelector('#tot');if(e)e.textContent=tot()}
+ function draw(){
+  bx.innerHTML='<div class="card" style="--c:var(--blue)"><h2><span class="ms">badge</span>Datos</h2><div class="row"><div class="g"><label>Asignatura</label><input data-p="info.asig" value="'+esc(c.info.asig)+'"/></div><div class="g"><label>Grado</label><input data-p="info.grado" value="'+esc(c.info.grado)+'"/></div><div class="g"><label>Actividad evaluada</label><input data-p="info.act" value="'+esc(c.info.act)+'"/></div></div></div>'
+  +'<div class="card" style="--c:var(--violet)"><h2><span class="ms">table_chart</span>Criterios y niveles de desempeño</h2><div class="wrap"><table class="t"><tr><th>Criterio</th><th style="width:70px">Peso</th>'
+  +c.levels.map(function(l,i){return'<th><input data-p="levels.'+i+'.n" value="'+esc(l.n)+'" placeholder="Nivel"/><input type="number" min="0" step="any" data-p="levels.'+i+'.p" value="'+esc(l.p)+'" title="Puntos"/><button class="btn dng" data-a="rl" data-i="'+i+'" style="padding:3px 8px">✕</button></th>'}).join('')+'<th></th></tr>'
+  +c.crit.map(function(x,i){return'<tr><td><textarea data-p="crit.'+i+'.n" placeholder="Criterio">'+esc(x.n)+'</textarea></td><td><input type="number" min="0" step="any" data-p="crit.'+i+'.w" value="'+esc(x.w)+'"/></td>'+c.levels.map(function(l,j){return'<td><textarea data-p="crit.'+i+'.d.'+j+'" placeholder="Descriptor">'+esc(x.d[j]||'')+'</textarea></td>'}).join('')+'<td><button class="btn dng" data-a="rc" data-i="'+i+'">✕</button></td></tr>'}).join('')
+  +'</table></div><div class="row" style="margin-top:10px"><button class="btn sec" data-a="ac"><span class="ms">add</span>Criterio</button><button class="btn sec" data-a="al"><span class="ms">add</span>Nivel</button><span class="big">Puntaje máximo: <span id="tot">'+tot()+'</span></span></div><p class="mut">Puntaje máximo = suma de (peso × puntos del nivel más alto).</p></div>'}
+ bx.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,i=+b.dataset.i;
+  if(a==='ac')c.crit.push({n:'',w:1,d:c.levels.map(function(){return''})});
+  if(a==='rc'&&c.crit.length>1)c.crit.splice(i,1);
+  if(a==='al'){c.levels.push({n:'Nivel',p:1});c.crit.forEach(function(x){x.d.push('')})}
+  if(a==='rl'&&c.levels.length>2){c.levels.splice(i,1);c.crit.forEach(function(x){x.d.splice(i,1)})}
+  draw();ch()});
+ bx.addEventListener('input',upd);draw()},
+print:function(t,c){var i=c.info;return'<table><tr><th>Asignatura</th><td>'+esc(i.asig)+'</td><th>Grado</th><td>'+esc(i.grado)+'</td></tr><tr><th>Actividad</th><td colspan="3">'+esc(i.act)+'</td></tr><tr><th>Estudiante</th><td>&nbsp;</td><th>Fecha</th><td>&nbsp;</td></tr></table><table><tr><th>Criterio</th><th>Peso</th>'+c.levels.map(function(l){return'<th>'+esc(l.n)+' ('+esc(l.p)+' pts)</th>'}).join('')+'<th>Puntos</th></tr>'
+ +c.crit.map(function(x){return'<tr><td><b>'+esc(x.n)+'</b></td><td>'+esc(x.w)+'</td>'+c.levels.map(function(l,j){return'<td>'+esc(x.d[j]||'')+'</td>'}).join('')+'<td>&nbsp;</td></tr>'}).join('')
+ +'</table><p><b>Puntaje máximo: '+(c.crit.reduce(function(a,x){return a+n(x.w)*Math.max.apply(null,c.levels.map(function(l){return n(l.p)}))},0))+'</b> &nbsp;&nbsp; Total obtenido: ________</p><div class="sig"><div>Docente</div><div>Estudiante</div></div>'}});
+
+})();
+</script></body></html>

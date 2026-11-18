@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><title>Generador de cuestionarios — Aula Abierta</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="herr.css"/></head><body><script src="herr.js"></script>
+<script>
+(function(){'use strict';var esc=H.esc,n=H.n;
+
+var L='abcdefgh';
+function score(c,ans){var ok=0;c.qs.forEach(function(q,i){if(ans[i]!==undefined&&ans[i]!==''&&+ans[i]===+q.a)ok++});return ok}
+H.mount({tool:'cuestionario',title:'Generador de cuestionarios',icon:'quiz',
+blank:function(){return{info:{asig:'',grado:'',inst:''},qs:[{t:'mc',q:'',o:['','','',''],a:0}]}},
+edit:function(bx,c,ch){var testing=false;
+ function draw(){
+  bx.innerHTML='<div class="card" style="--c:var(--blue)"><h2><span class="ms">badge</span>Datos</h2><div class="row"><div class="g"><label>Asignatura</label><input data-p="info.asig" value="'+esc(c.info.asig)+'"/></div><div class="g"><label>Grado</label><input data-p="info.grado" value="'+esc(c.info.grado)+'"/></div></div><label>Instrucciones</label><textarea data-p="info.inst">'+esc(c.info.inst)+'</textarea></div>'
+  +c.qs.map(function(q,i){return'<div class="card" style="--c:'+(q.t==='tf'?'var(--gold)':'var(--violet)')+'"><div class="row"><b>Pregunta '+(i+1)+'</b><select data-t="'+i+'" style="width:auto"><option value="mc"'+(q.t==='mc'?' selected':'')+'>Selección múltiple</option><option value="tf"'+(q.t==='tf'?' selected':'')+'>Verdadero o falso</option></select><span class="g"></span><button class="btn dng" data-a="rq" data-i="'+i+'">✕</button></div><textarea data-p="qs.'+i+'.q" placeholder="Enunciado">'+esc(q.q)+'</textarea>'
+   +q.o.map(function(o,j){return'<div class="row" style="margin-top:6px"><input type="radio" name="a'+i+'" value="'+j+'" data-p="qs.'+i+'.a" style="width:auto"'+(+q.a===j?' checked':'')+' title="Respuesta correcta"/>'+(q.t==='mc'?'<b>'+L[j]+')</b><input class="g" data-p="qs.'+i+'.o.'+j+'" value="'+esc(o)+'" placeholder="Opción"/>':'<span>'+esc(o)+'</span>')+'</div>'}).join('')
+   +'<p class="mut">Marca el círculo de la respuesta correcta.</p></div>'}).join('')
+  +'<div class="row"><button class="btn sec" data-a="aq"><span class="ms">add</span>Agregar pregunta</button><button class="btn gold" data-a="tt"><span class="ms">play_arrow</span>Probar cuestionario</button></div><div id="tst"></div>'}
+ function test(){var t=bx.querySelector('#tst');if(!testing){t.innerHTML='';return}
+  t.innerHTML='<div class="card" style="--c:var(--sky)"><h2><span class="ms">edit_note</span>Resolver cuestionario</h2>'+c.qs.map(function(q,i){return'<div class="q" style="margin:10px 0"><b>'+(i+1)+'. '+esc(q.q)+'</b>'+q.o.map(function(o,j){return'<div><label style="display:flex;gap:6px;font-weight:400;color:var(--ink)"><input type="radio" name="t'+i+'" value="'+j+'" style="width:auto"/>'+(q.t==='mc'?L[j]+') ':'')+esc(o)+'</label></div>'}).join('')+'<div data-fb="'+i+'"></div></div>'}).join('')+'<button class="btn pri" data-a="co"><span class="ms">task_alt</span>Corregir</button><div id="rs" class="big" style="margin-top:10px"></div></div>'}
+ function correct(){var a={},t=bx.querySelector('#tst');c.qs.forEach(function(q,i){var r=t.querySelector('input[name=t'+i+']:checked');a[i]=r?r.value:'';var fb=t.querySelector('[data-fb="'+i+'"]');var good=r&&+r.value===+q.a;fb.innerHTML=good?'<span class="ok">✔ Correcto</span>':'<span class="bad">✘ Incorrecto</span> · Respuesta correcta: '+esc((q.t==='mc'?L[+q.a]+') ':'')+(q.o[+q.a]||''))});
+  var s=score(c,a),N=c.qs.length;t.querySelector('#rs').innerHTML='Resultado: '+s+' de '+N+' ('+Math.round(s/N*100)+'%) · Nota sobre 100: '+Math.round(s/N*100)}
+ bx.addEventListener('change',function(e){var i=e.target.dataset.t;if(i===undefined)return;var q=c.qs[+i];q.t=e.target.value;if(q.t==='tf'){q.o=['Verdadero','Falso'];q.a=0}else{q.o=['','','',''];q.a=0}draw();ch()});
+ bx.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,i=+b.dataset.i;
+  if(a==='co'){correct();return}
+  if(a==='tt'){testing=!testing;test();return}
+  if(a==='aq')c.qs.push({t:'mc',q:'',o:['','','',''],a:0});if(a==='rq'&&c.qs.length>1)c.qs.splice(i,1);draw();test();ch()});
+ draw()},
+print:function(t,c){var i=c.info;return'<p>'+esc([i.asig,i.grado].filter(Boolean).join(' · '))+'</p><p>Nombre: ______________________ Fecha: __________ Puntaje: ____ / '+c.qs.length+'</p>'+(i.inst?'<p><i>'+esc(i.inst)+'</i></p>':'')
+ +c.qs.map(function(q,x){return'<div class="q" style="margin:8px 0"><b>'+(x+1)+'. '+esc(q.q)+'</b>'+q.o.map(function(o,j){return'<div style="margin-left:18px">'+(q.t==='mc'?L[j]+') ':'( ) ')+esc(o)+'</div>'}).join('')+'</div>'}).join('')
+ +'<div class="pb"><h1>Clave de respuestas</h1><table><tr><th>#</th><th>Respuesta correcta</th></tr>'+c.qs.map(function(q,x){return'<tr><td>'+(x+1)+'</td><td>'+esc((q.t==='mc'?L[+q.a]+') ':'')+(q.o[+q.a]||''))+'</td></tr>'}).join('')+'</table></div>'}});
+window.__score=score;
+
+})();
+</script></body></html>

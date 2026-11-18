@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Centro de Herramientas Docentes — Aula Abierta</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--deep:#0b1f5c;--gold:#d4a62a;--gsoft:#f6e3a1;--violet:#7d6bd0}*{box-sizing:border-box}body{margin:0;font-family:Poppins,system-ui,sans-serif;color:#14183a}
+.ms{font-family:'Material Symbols Outlined';font-size:34px;display:inline-block;width:1.1em;height:1.1em;overflow:hidden;line-height:1}
+.top{background:linear-gradient(135deg,#0b1f5c,#1d3d99 60%,#7d6bd0);color:#fff;padding:calc(18px + env(safe-area-inset-top,0px)) 18px 20px;border-bottom:3px solid var(--gold)}
+.top a{color:var(--gsoft);font-size:13px;text-decoration:none}.top h1{margin:6px 0 2px;font-size:22px;color:#fff}.top p{margin:0;font-size:13px;opacity:.85}
+main{max-width:960px;margin:0 auto;padding:16px 14px 40px;display:grid;gap:14px}@media(min-width:720px){main{grid-template-columns:1fr 1fr}}
+.t{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #dbe4fb;border-top:4px solid var(--c);border-radius:18px;padding:16px;box-shadow:0 6px 18px rgba(30,60,140,.09);transition:transform .2s}
+a.t:hover{transform:translateY(-2px)}.t .ms{color:var(--c)}.t h2{margin:6px 0 4px;font-size:17px;color:var(--deep)}.t p{margin:0;font-size:13px;color:#5b6190}
+.t.off{opacity:.6}.b{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--gsoft);color:#5a4300}.b.on{background:#dff5e6;color:#176b36}
+
+.ms{visibility:hidden}.fok .ms{visibility:visible}</style></head><body>
+<header class="top"><a href="panel.html">← Volver al panel docente</a><h1>Centro de Herramientas Docentes</h1><p>Recursos prácticos para planificar, evaluar y enseñar mejor.</p></header>
+<main>
+<a class="t" style="--c:#7d6bd0" href="planificador.html"><span class="ms">edit_calendar</span><h2>Planificador de clases</h2><p>Planificaciones diarias, semanales o por unidad, listas para imprimir.</p><span class="b on">Disponible</span></a>
+<a class="t" style="--c:#2a8fd8" href="rubricas.html"><span class="ms">grading</span><h2>Generador de rúbricas</h2><p>Criterios, niveles de desempeño y puntuaciones.</p><span class="b on">Disponible</span></a>
+<a class="t" style="--c:#d4a62a" href="calificaciones.html"><span class="ms">calculate</span><h2>Calculadora de calificaciones</h2><p>Promedios, ponderaciones y notas finales.</p><span class="b on">Disponible</span></a>
+<a class="t" style="--c:#3f6fd9" href="cuestionarios.html"><span class="ms">quiz</span><h2>Generador de cuestionarios</h2><p>Evaluaciones con corrección automática.</p><span class="b on">Disponible</span></a>
+<a class="t" style="--c:#7d6bd0" href="contabilidad.html"><span class="ms">account_balance</span><h2>Laboratorio de Contabilidad</h2><p>Asientos, libro mayor, ITBIS, balanza y estados financieros.</p><span class="b on">Disponible</span></a>
+</main>
+<script>try{if(!(localStorage.getItem('aa_token')||sessionStorage.getItem('aa_token')))location.replace('admin-login.html?next='+encodeURIComponent('herramientas.html'))}catch(e){}</script>
+<script>try{document.fonts.load('22px "Material Symbols Outlined"').then(function(f){if(f.length)document.body.classList.add('fok')})}catch(e){}</script></body></html>
